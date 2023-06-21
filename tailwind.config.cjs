@@ -4,16 +4,25 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,ts}'],
-  // theme: {
-  //   extend: {
-  //     // here's how to extend fonts if needed
-  //     fontFamily: {
-  //       sans: [...defaultTheme.fontFamily.sans],
-  //     },
-  //   },
-  // },
+  theme: {
+    container: {
+      center: true,
+    },
+    extend: {
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
+      colors: {
+        main: "#E5E5E5",
+      },
+      transitionProperty: {
+        'height': 'height'
+      },
+    },
+  },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    require("@tailwindcss/line-clamp"),
     require('@tailwindcss/typography'),
   ],
 }
