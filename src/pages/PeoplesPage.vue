@@ -40,13 +40,6 @@ const state = new PeoplesStore()
 
 const isLoading = ref(true)
 const search = ref("")
-// const searchPeoples = ref<People[]>([])
-
-// watch(search, (newSearch) => {
-//   state.fetchPeoplesBySearch(newSearch).then(({ data }) => {
-//     searchPeoples.value = data.results
-//   })
-// })
 
 state.fetchPeoplesByParams().then(() => {
   isLoading.value = false
