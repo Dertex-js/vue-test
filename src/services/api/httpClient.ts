@@ -10,8 +10,6 @@ export interface IRequest {
   paramsSerializer?: (params: object | string) => string
 }
 
-axios.defaults.baseURL = "https://swapi.dev/api/"
-
 const makeRequest = ({ url = "/", method = "get", headers, params, data }: IRequest) =>
   axios({
     url,
