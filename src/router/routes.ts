@@ -26,7 +26,7 @@ const routes = [
     }
   },
   {
-    path: "/favorites",
+    path: "/favourites",
     component: FavouritesPage,
     meta: {
       title: "Избранные"
