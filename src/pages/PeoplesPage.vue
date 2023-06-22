@@ -8,8 +8,8 @@
       @select="handleSelect"
     />
     <el-table
-      v-if="!isLoading"
-      :data="state.peoples"
+      v-loading="isLoading"
+      :data="peoplesState.peoples"
       :cell-style="{ height: '60px' }"
       border
     >
@@ -35,32 +35,35 @@
 import { PeoplesStore } from "@/store/peoplesStore.ts"
 import { People } from "@/types/people.ts"
 import router from "@/router"
+import { FavouriteStore } from "@/store/favouriteStore.ts"
 
-const state = new PeoplesStore()
+const peoplesState = new PeoplesStore()
+const favouritesState = new FavouriteStore()
 
 const isLoading = ref(true)
 const search = ref("")
 
-state.fetchPeoplesByParams().then(() => {
+favouritesState.getFavourites()
+peoplesState.fetchPeoplesByParams().then(() => {
   isLoading.value = false
 })
 
-const handleAddToFavourites = (index: number, row: People) => {
-  console.log(index, row)
+const handleAddToFavourites = (_, row: People) => {
+  favouritesState.addToFavourite(row)
 }
-const handleDeleteFromFavorites = (index: number, row: People) => {
-  console.log(index, row)
+const handleDeleteFromFavorites = (_, row: People) => {
+  favouritesState.deleteFromFavourite(row)
 }
 const querySearch = (queryString: string, cb: any) => {
-  state.fetchPeoplesBySearch(queryString).then(({ data }) => {
+  peoplesState.fetchPeoplesBySearch(queryString).then(({ data }) => {
     cb(
-      data.results.map((el, index) => {
-        return { value: el.name, id: index }
+      data.results.map((el: People) => {
+        return { value: el.name, id: el.url.at(-2) }
       })
     )
   })
 }
-const handleSelect = (el) => {
+const handleSelect = (el: { value: string; id: string }) => {
   router.push(`/peoples/${el.id}`)
 }
 </script>

@@ -25,9 +25,4 @@ export class PeoplesStore {
   fetchPeoplesBySearch(searchString: string) {
     return peoplesApi.fetchPeoplesByParams({ search: searchString })
   }
-
-  // @computed
-  // get double() {
-  //   //asd
-  // }
 }

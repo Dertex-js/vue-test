@@ -40,10 +40,10 @@ const getItemFromStorage: GetItemFromStorage = (
     return getItemFromCookies(key, defaultValue)
   }
 
-  let storage = global.localStorage
+  let storage = window.localStorage
 
   if (storageType === StorageTypes.SESSION_STORAGE) {
-    storage = global.sessionStorage
+    storage = window.sessionStorage
   }
 
   try {
