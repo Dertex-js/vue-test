@@ -28,17 +28,13 @@ export class FavouriteStore {
 
   @action
   addToFavourite(people: People) {
-    if (!this.favoritePeople.includes(people)) {
-      this.favoritePeople.push(people)
-      this.setFavourites()
-    }
+    this.favoritePeople = [...this.favoritePeople, { ...people }]
+    this.setFavourites()
   }
 
   @action
   deleteFromFavourite(people: People) {
-    if (this.favoritePeople.includes(people)) {
-      this.favoritePeople.splice(this.favoritePeople.indexOf(people), 1)
-      this.setFavourites()
-    }
+    this.favoritePeople = this.favoritePeople.filter((el) => el.url !== people.url)
+    this.setFavourites()
   }
 }

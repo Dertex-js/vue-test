@@ -17,7 +17,7 @@ export class PeoplesStore {
       this.peoples = [...this.peoples, ...data.results]
       return peoplesApi
         .fetchMorePeoples(data.next)
-        .then(() => (this.peoples = [...this.peoples, ...data.results]))
+        .then(({ data }) => (this.peoples = [...this.peoples, ...data.results]))
     })
   }
 
