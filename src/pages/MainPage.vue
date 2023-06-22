@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[100vw] h-[93vh] flex items-center justify-center bg-[#f5f5f5]">
+  <div class="flex items-center justify-center">
     Это главная страница, она немного пустовата(
   </div>
 </template>

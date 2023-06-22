@@ -11,3 +11,8 @@ export const fetchMorePeoples = (url: string) =>
   makeRequest({
     url
   })
+
+export const fetchCurrentPeople = (id: string) =>
+  makeRequest({
+    url: `https://swapi.dev/api/people/${id}`
+  })

@@ -6,6 +6,7 @@ import { People } from "@/types/people.ts"
 export class PeoplesStore {
   @observable
   peoples: People[] = []
+  currentPeople: People | undefined = undefined
 
   constructor() {
     makeObservable(this)
@@ -24,5 +25,12 @@ export class PeoplesStore {
   @action
   fetchPeoplesBySearch(searchString: string) {
     return peoplesApi.fetchPeoplesByParams({ search: searchString })
+  }
+
+  @action
+  fetchCurrentPeople(id: string) {
+    return peoplesApi.fetchCurrentPeople(id).then(({ data }) => {
+      this.currentPeople = data
+    })
   }
 }
